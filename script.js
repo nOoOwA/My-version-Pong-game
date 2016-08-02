@@ -3,7 +3,8 @@ var canvas = document.getElementById("mainCanvas");
  
  var keys = []; 
  
- var width = 1200, height = 500, speed = 6;
+ var width = 1200, height = 500,  speed = 6;
+  
  
  var scorePlayer = 0;
  
@@ -27,14 +28,13 @@ var canvas = document.getElementById("mainCanvas");
 	 x: 400,
 	 y: 300,
 	 width: 10,
-	 height: 10,
-	 speed
+	 height: 10
  };
 
- var moveY = 1;
+ var moveY = 3;
  
  
- var moveX = 1;
+ var moveX = 3;
  
  
  
