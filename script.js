@@ -66,26 +66,12 @@ var canvas = document.getElementById("mainCanvas");
  }
  
  function update(){ /* wszystko zwiazane z mechanika gry */
- if(keys[38]) (player.y-=speed);
- if(keys[40]) (player.y+=speed);
+ if(keys[38]) (player2.y-=speed);
+ if(keys[40]) (player2.y+=speed);
 	
-if(keys[87]) (player2.y-=speed);
-if(keys[83]) (player2.y+=speed);
+if(keys[87]) (player.y-=speed);
+if(keys[83]) (player.y+=speed);
 
-	
-	//kolizje z paletkami i odbicie piłki
-         function colision(ball, player, player2 ){
-			 return !(ball.x > player.x) || (ball.x < player.x)
-							|| (ball.x >player2.x) || (ball.x < player2.x);
-		 }
-	
-
-	
-	/*function process(ball, player, player2) {
-		(moveX = -moveX);
-		(-moveX = moveX);
-	}
-	  */
  }  
  
  function render(){  /*wszystko zwiazane z grafika*/
@@ -148,6 +134,7 @@ if(keys[83]) (player2.y+=speed);
 			moveY = -moveY;
 		}
 		
+		
 		if (ball.x > (canvas.width - ball.width) ){
 			moveX = -moveX;
 		}
@@ -156,12 +143,20 @@ if(keys[83]) (player2.y+=speed);
 			moveX = -moveX;
 		}
 
+		// kolizja z player i odbicie piłki
+		if (ball.x < (player.x + ball.width) ){
+			moveX = -moveX;
+		}
+		
+		//kolizja z player2 i odbicie od piłki
+		if (ball.x > (player2.x - ball.width) ) {
+			moveX = -moveX;
+		}
+		
+	
  }
  
-   /*   if (colision = true) {
-		  process;
-	  }
- */
+ 
 
 	
  setInterval(function() { 
