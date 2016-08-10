@@ -29,12 +29,13 @@ var canvas = document.getElementById("mainCanvas");
 	 y: 300,
 	 width: 10,
 	 height: 10
+	 
  };
 
- var moveY = 3;
+ var moveY = 4;
  
  
- var moveX = 3;
+ var moveX = 4;
  
  
  
@@ -65,14 +66,16 @@ var canvas = document.getElementById("mainCanvas");
 	 render();
  }
  
- function update(){ /* wszystko zwiazane z mechanika gry */
+ 
+ function update(){ //wszystko związane z mechanika gry 
  if(keys[38]) (player2.y-=speed);
  if(keys[40]) (player2.y+=speed);
 	
 if(keys[87]) (player.y-=speed);
 if(keys[83]) (player.y+=speed);
 
- }  
+ }
+
  
  function render(){  /*wszystko zwiazane z grafika*/
 	 context.clearRect(0, 0, width, height); /* pozbawia ciagnacego sie "cienia" za graczem/przeciwnikiem/grafika */
@@ -97,7 +100,7 @@ if(keys[83]) (player.y+=speed);
 		context.fillStyle = "red";
 		context.font = "bold 30px helvetica"
 		context.fillText(scorePlayer, 10, 30); /* po score jest podane miejsce w liczbach gdzie score ma byc na planszy */
-		context.fillText(scorePlayer2, 1010, 30) ;
+		context.fillText(scorePlayer2, 1010, 30);
 		
 		// blokowanie ucieczki player po za górną krawędź canvas
 		if (player.y < 0 ) {
@@ -142,23 +145,27 @@ if(keys[83]) (player.y+=speed);
 		if (ball.x < 0){
 			moveX = -moveX;
 		}
-
-		// kolizja z player i odbicie piłki
-		if (ball.x < (player.x + ball.width) ){
-			moveX = -moveX;
-		}
 		
-		//kolizja z player2 i odbicie od piłki
-		if (ball.x > (player2.x - ball.width) ) {
-			moveX = -moveX;
-		}
+//kolizja piłki z player
+ if  (player.x < ball.x +ball.width 	&&
+		player.x + player.width> ball.x   &&
+		player.y<ball.y + ball.height      &&
+		player.height + player.y > ball.y) {
 		
+		moveX = -moveX;
+		}
 	
- }
+	//kolizja piłki z player2
+ if  (player2.x < ball.x +ball.width 	&&
+		player2.x + player2.width> ball.x   &&
+		player2.y<ball.y + ball.height      &&
+		player2.height + player2.y > ball.y) {
+		
+		moveX = -moveX;
+		}
+	 
+	}
  
- 
-
-	
  setInterval(function() { 
-	game()  ;
- }, 1000/30)   
+	game();}
+	,1000/30)
