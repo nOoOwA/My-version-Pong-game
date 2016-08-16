@@ -29,8 +29,9 @@ var ball = {
     y: 300,
     width: 10,
     height: 10
-
 };
+
+
 
 var moveY = 4;
 
@@ -163,20 +164,44 @@ function render() {  /*wszystko zwiazane z grafika*/
 
         moveX = -moveX;
     }
+	
+		// tablica
+	var ballPosition = [100, 300];
 
+	// punkty za pokonanie player i włączenie funkcji win2
     if ((ball.x + ball.width) < player.x) {
-        ((scorePlayer2 += 1) && (ball.y = 100, ball.x = 800));
+	win2();
     }
+	
+	
+	
+	//funkcja win2
+	function win2(){
+		ball.x = 800;
+		
+		while(scorePlayer2+=1){
+			ball.y = ballPosition[i];
+			i++;
+		}
+	}
 
-    //punkty za pokonanie player2
+    //punkty za pokonanie player2 i włączenie funkcji win1
     if ((ball.x - ball.width) > player2.x) {
-        ((scorePlayer += 1) && (ball.y = 100, ball.x = 400));
+		win1();
     }
 
-
+	//funkcja która wysyła piłkę po przegranej player2 na strone player1 i tam "atakuje" player2
+	function win1(){
+		ball.x = 400;
+		
+			while(scorePlayer += 1){
+				ball.y = ballPosition[i];
+				i++;
+			}
+	}
+	
 }
 
 setInterval(function () {
-    game();
-}
+game();}
    , 1000 / 30)
