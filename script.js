@@ -6,6 +6,7 @@ var keys = [];
 var width = 1200, height = 500, speed = 6;
 
 
+
 var scorePlayer = 0;
 
 var scorePlayer2 = 0;
@@ -81,123 +82,123 @@ function update() { //wszystko związane z mechanika gry
 function render() {  /*wszystko zwiazane z grafika*/
     context.clearRect(0, 0, width, height); /* pozbawia ciagnacego sie "cienia" za graczem/przeciwnikiem/grafika */
 
-    //player
-    context.fillStyle = "white";
-    context.fillRect(player.x, player.y, player.width, player.height);
+ //player
+ context.fillStyle = "white";
+context.fillRect(player.x, player.y, player.width, player.height);
 
-    //player2
-    context.fillStyle = "white";
-    context.fillRect(player2.x, player2.y, player2.width, player2.height);
+ //player2
+context.fillStyle = "white";
+context.fillRect(player2.x, player2.y, player2.width, player2.height);
 
-    //ball
-    context.fillStyle = "white";
-    context.fillRect(ball.x, ball.y, ball.width, ball.height, ball.speed);
+ //ball
+ context.fillStyle = "white";
+context.fillRect(ball.x, ball.y, ball.width, ball.height, ball.speed);
 
-    //center_wall
-    context.fillStyle = "white";
-    context.fillRect(center_wall.x, center_wall.y, center_wall.width, center_wall.height);
+ //center_wall
+context.fillStyle = "white";
+context.fillRect(center_wall.x, center_wall.y, center_wall.width, center_wall.height);
 
-    //score
-    context.fillStyle = "red";
-    context.font = "bold 30px helvetica"
-    context.fillText(scorePlayer, 10, 30); /* po score jest podane miejsce w liczbach gdzie score ma byc na planszy */
-    context.fillText(scorePlayer2, 1010, 30);
+//score
+context.fillStyle = "red";
+context.font = "bold 30px helvetica"
+context.fillText(scorePlayer, 10, 30); /* po score jest podane miejsce w liczbach gdzie score ma byc na planszy */
+context.fillText(scorePlayer2, 1010, 30);
 
-    // blokowanie ucieczki player po za górną krawędź canvas
-    if (player.y < 0) {
-        player.y = 0;
+// blokowanie ucieczki player po za górną krawędź canvas
+ if (player.y < 0) {
+      player.y = 0;
     }
 
-    // blokowanie ucieczki player2 po za górną krawędź canvas
+// blokowanie ucieczki player2 po za górną krawędź canvas
     if (player2.y < 0) {
         player2.y = 0;
     }
 
-    //blokowanie ucieczki player po za dolną krawędź canvas
-    if ((player.y + player.height) > canvas.height) {
-        player.y = (canvas.height - player.height);
+//blokowanie ucieczki player po za dolną krawędź canvas
+if ((player.y + player.height) > canvas.height) {
+      player.y = (canvas.height - player.height);
     }
 
-    //blokowanie ucieczki player2 po za dolną krawędź canvas
-    if ((player2.y + player2.height) > canvas.height) {
-        player2.y = (canvas.height - player2.height);
+//blokowanie ucieczki player2 po za dolną krawędź canvas
+ if ((player2.y + player2.height) > canvas.height) {
+       player2.y = (canvas.height - player2.height);
     }
 
-    //ruch piłki 
-    ball.y = ball.y + moveY;
+//ruch piłki 
+ball.y = ball.y + moveY;
 
-    ball.x = ball.x + moveX;
+ball.x = ball.x + moveX;
 
 
-    //kolizja z niewidzialną ścianą i zmiana kierunku
-    if (ball.y > (canvas.height - ball.height)) {
-        moveY = -moveY;
+//kolizja z niewidzialną ścianą i zmiana kierunku
+ if (ball.y > (canvas.height - ball.height)) {
+      moveY = -moveY;
     }
 
-    if (ball.y < 0) {
-        moveY = -moveY;
+if (ball.y < 0) {
+     moveY = -moveY;
     }
 
 
-    if (ball.x > (canvas.width - ball.width)) {
+if (ball.x > (canvas.width - ball.width)) {
         moveX = -moveX;
     }
 
-    if (ball.x < 0) {
+if (ball.x < 0) {
         moveX = -moveX;
     }
 
-    //kolizja piłki z player
-    if (player.x < ball.x + ball.width &&
-           player.x + player.width > ball.x &&
-           player.y < ball.y + ball.height &&
-           player.height + player.y > ball.y) {
-
-        moveX = -moveX;
+//kolizja piłki z player
+if (player.x < ball.x + ball.width &&
+     player.x + player.width > ball.x &&
+     player.y < ball.y + ball.height &&
+     player.height + player.y > ball.y) {
+		 
+	 moveX = -moveX;
     }
 
-    //kolizja piłki z player2
-    if (player2.x < ball.x + ball.width &&
-           player2.x + player2.width > ball.x &&
-           player2.y < ball.y + ball.height &&
-           player2.height + player2.y > ball.y) {
+//kolizja piłki z player2
+if (player2.x < ball.x + ball.width &&
+    player2.x + player2.width > ball.x &&
+     player2.y < ball.y + ball.height &&
+     player2.height + player2.y > ball.y) {
 
-        moveX = -moveX;
-    }
-	
-		// tablica
-	var ballPosition = [100, 300];
-
-	// punkty za pokonanie player i włączenie funkcji win2
-    if ((ball.x + ball.width) < player.x) {
-	win2();
+     moveX = -moveX;
     }
 	
 	
-	
-	//funkcja win2
-	function win2(){
-		ball.x = 800;
 		
-		while(scorePlayer2+=1){
-			ball.y = ballPosition[i];
-			i++;
-		}
+
+// punkty za pokonanie player i włączenie funkcji win2
+ if ((ball.x + ball.width) < player.x) {
+	  win2();
+    }
+	
+// punkty ball.Y jako zmienne
+var A = 100;
+var B = 300;
+
+//funkcja nazwyajaca ballPosition
+var wait = function ballPosition(A, B){
+	   A++;
+	   B++;
+	   }
+
+//funkcja win2 i wait
+function win2(wait){
+	ball.x = 800;
+	scorePlayer2 = scorePlayer2+1;
 	}
 
-    //punkty za pokonanie player2 i włączenie funkcji win1
-    if ((ball.x - ball.width) > player2.x) {
-		win1();
+//punkty za pokonanie player2 i włączenie funkcji win1
+ if ((ball.x - ball.width) > player2.x) {
+	 win1();
     }
 
 	//funkcja która wysyła piłkę po przegranej player2 na strone player1 i tam "atakuje" player2
-	function win1(){
-		ball.x = 400;
-		
-			while(scorePlayer += 1){
-				ball.y = ballPosition[i];
-				i++;
-			}
+function win1(wait){
+	ball.x = 400;	
+	scorePlayer = scorePlayer+1;
 	}
 	
 }
