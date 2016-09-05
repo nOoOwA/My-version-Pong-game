@@ -6,7 +6,6 @@ var keys = [];
 var width = 1200, height = 500, speed = 6;
 
 
-
 var scorePlayer = 0;
 
 var scorePlayer2 = 0;
@@ -32,19 +31,12 @@ var ball = {
     height: 10
 };
 
-
-
+//kierunki ruchów piłki
 var moveY = 4;
 
 
 var moveX = 4;
 
-
-
-var wall = {
-    x: 0,
-    y: 0
-};
 
 var center_wall = {
     x: 580,
@@ -72,10 +64,8 @@ function game() {
 function update() { //wszystko związane z mechanika gry 
     if (keys[38]) (player2.y -= speed);
     if (keys[40]) (player2.y += speed);
-
     if (keys[87]) (player.y -= speed);
     if (keys[83]) (player.y += speed);
-
 }
 
 
@@ -110,7 +100,7 @@ context.fillText(scorePlayer2, 1010, 30);
     }
 
 // blokowanie ucieczki player2 po za górną krawędź canvas
-    if (player2.y < 0) {
+   if (player2.y < 0) {
         player2.y = 0;
     }
 
@@ -166,41 +156,54 @@ if (player2.x < ball.x + ball.width &&
      moveX = -moveX;
     }
 	
-	
-		
 
-// punkty za pokonanie player i włączenie funkcji win2
- if ((ball.x + ball.width) < player.x) {
-	  win2();
-    }
-	
-// punkty ball.Y jako zmienne
-var A = 100;
-var B = 300;
 
-//funkcja nazwyajaca ballPosition
-var wait = function ballPosition(A, B){
-	   A++;
-	   B++;
-	   }
+//zmiana pozycji piłki
+var  ballPosition2 = function(){
 
-//funkcja win2 i wait
-function win2(wait){
-	ball.x = 800;
-	scorePlayer2 = scorePlayer2+1;
-	}
+var x;
+var point =  new Array();
+point[0] = 100;
+point[1] = 300;
 
-//punkty za pokonanie player2 i włączenie funkcji win1
+for(x in point)
+{
+ball.y = (point[x]);
+ball.x = 800;
+}
+};
+
+
+//zmiana pozycji piłki 
+var ballPosition1 = function(){
+
+var x;
+var point = new Array();
+point[0] = 100;
+point[1] = 300;
+
+for (x in point)
+{
+ball.y = (point[x]);
+
+ball.x = 400;
+}
+};
+
+//punkty za pokonanie player2  i wywołanie funkcji uśpienia
  if ((ball.x - ball.width) > player2.x) {
-	 win1();
+	 
+	scorePlayer = scorePlayer + 1 ;
+	 
+	 setTimeout(ballPosition1, 0400);
     }
-
-	//funkcja która wysyła piłkę po przegranej player2 na strone player1 i tam "atakuje" player2
-function win1(wait){
-	ball.x = 400;	
-	scorePlayer = scorePlayer+1;
-	}
 	
+// punkty za pokonanie player i wywołanie  funkcji uśpienia
+ if ((ball.x + ball.width) < player.x) {
+	scorePlayer2 = scorePlayer2 +1 ;
+	  
+	  setTimeout(ballPosition2, 0400);
+    }
 }
 
 setInterval(function () {
