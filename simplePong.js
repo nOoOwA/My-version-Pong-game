@@ -161,12 +161,7 @@ if (player2.x < ball.x + ball.width &&
 
      moveX = -moveX;
     }
-	
-//kolizja z gory 
-if ( ball.y  < player1.y) {
-	console.log(4);
-	//moveY = -moveY;
-} 
+
 
 //gdy piłka wyjdzie po za endWall to pojawia się w nowym miejscu
 //a gracz zdobywa punkt
